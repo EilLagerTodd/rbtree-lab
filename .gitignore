@@ -48,6 +48,8 @@
 *.idb
 *.pdb
 
+backup.txt
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd
