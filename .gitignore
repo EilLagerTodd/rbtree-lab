@@ -48,7 +48,7 @@
 *.idb
 *.pdb
 
-!backup.txt
+backup.txt
 
 # Kernel Module Compile Results
 *.mod*
