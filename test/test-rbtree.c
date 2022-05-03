@@ -90,42 +90,42 @@ void test_find_single(const key_t key, const key_t wrong_key) {
 // };
 
 // // min/max should return the min/max value of the tree
-// void test_minmax(key_t *arr, const size_t n) {
-//   // null array is not allowed
-//   assert(n > 0 && arr != NULL);
+void test_minmax(key_t *arr, const size_t n) {
+  // null array is not allowed
+  assert(n > 0 && arr != NULL);
 
-//   rbtree *t = new_rbtree();
-//   assert(t != NULL);
+  rbtree *t = new_rbtree();
+  assert(t != NULL);
 
-//   insert_arr(t, arr, n);
-//   assert(t->root != NULL);
-// #ifdef SENTINEL
-//   assert(t->root != t->nil);
-// #endif
+  // insert_arr(t, arr, n);
+  assert(t->root != NULL);
+#ifdef SENTINEL
+  assert(t->root != t->nil);
+#endif
 
-//   qsort((void *)arr, n, sizeof(key_t), comp);
-//   node_t *p = rbtree_min(t);
-//   assert(p != NULL);
-//   assert(p->key == arr[0]);
+  // qsort((void *)arr, n, sizeof(key_t), comp);
+  node_t *p = rbtree_min(t);
+  assert(p != NULL);
+  assert(p->key == arr[0]);
 
-//   node_t *q = rbtree_max(t);
-//   assert(q != NULL);
-//   assert(q->key == arr[n - 1]);
+  node_t *q = rbtree_max(t);
+  assert(q != NULL);
+  assert(q->key == arr[n - 1]);
 
-//   rbtree_erase(t, p);
-//   p = rbtree_min(t);
-//   assert(p != NULL);
-//   assert(p->key == arr[1]);
+  // rbtree_erase(t, p);
+  p = rbtree_min(t);
+  assert(p != NULL);
+  assert(p->key == arr[1]);
 
-//   if (n >= 2) {
-//     rbtree_erase(t, q);
-//     q = rbtree_max(t);
-//     assert(q != NULL);
-//     assert(q->key == arr[n - 2]);
-//   }
+  if (n >= 2) {
+    // rbtree_erase(t, q);
+    q = rbtree_max(t);
+    assert(q != NULL);
+    assert(q->key == arr[n - 2]);
+  }
 
-//   delete_rbtree(t);
-// }
+  delete_rbtree(t);
+}
 
 // void test_to_array(rbtree *t, const key_t *arr, const size_t n) {
 //   assert(t != NULL);
@@ -293,11 +293,11 @@ void test_find_single(const key_t key, const key_t wrong_key) {
 //   test_rb_constraints(entries, n);
 // }
 
-// void test_minmax_suite() {
-//   key_t entries[] = {10, 5, 8, 34, 67, 23, 156, 24, 2, 12};
-//   const size_t n = sizeof(entries) / sizeof(entries[0]);
-//   test_minmax(entries, n);
-// }
+void test_minmax_suite() {
+  key_t entries[] = {10, 5, 8, 34, 67, 23, 156, 24, 2, 12};
+  const size_t n = sizeof(entries) / sizeof(entries[0]);
+  test_minmax(entries, n);
+}
 
 // void test_to_array_suite() {
 //   rbtree *t = new_rbtree();
@@ -376,7 +376,8 @@ int main(void) {
   printf("Passed find_single\n");
   // test_erase_root(128);
   // test_find_erase_fixed();
-  // test_minmax_suite();
+  test_minmax_suite();
+  printf("Passed minmax_suite\n");
   // test_to_array_suite();
   // test_distinct_values();
   // test_duplicate_values();

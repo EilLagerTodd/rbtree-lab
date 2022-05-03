@@ -214,16 +214,42 @@ node_t *rbtree_find(const rbtree *t, const key_t key) {
     return NULL;
 }
 
-// node_t *rbtree_min(const rbtree *t) {
-//   // TODO: implement find
-//   return t->root;
-// }
+node_t *rbtree_min(const rbtree *t) {
+  // TODO: implement find
+  // 트리 구성에서 left 쪽이 작은것 = left 쪽을 계속 탐색하여 작은값을 찾는다.
+  // root -> left 를 기준으로 하여 left 로 내려간다. 더 작은 값이 나올때마다 해당하는 값을 기준으로 갱신.
 
-// node_t *rbtree_max(const rbtree *t) {
-//   // TODO: implement find
+  node_t *value = t->root;
+  if (value == t -> nil)
+  {
+      return value;
+  }
+  while (value -> left != t->nil)
+  {
+      value = value -> left;
+  }
 
-//   return t->root;
-// }
+  return value;
+}
+
+node_t *rbtree_max(const rbtree *t) {
+  // TODO: implement find
+  // 트리 구성에서 right 쪽이 큰것 = right 쪽을 계속 탐색하여 큰값을 찾는다.
+  // root -> right 를 기준으로 하여 right 로 내려간다. 더 큰 값이 나올때마다 해당하는 값을 기준으로 갱신.
+  // 코드 자체는 min 에서 반대로
+
+  node_t *value = t->root;
+  if (value == t -> nil)
+  {
+      return value;
+  }
+  while (value -> right != t->nil)
+  {
+      value = value -> right;
+  }
+
+  return value;
+}
 
 // int rbtree_erase(rbtree *t, node_t *p) {
 //   // TODO: implement erase
